@@ -1,0 +1,647 @@
+{
+  "metadata": {
+    "version": 1,
+    "disable_limits": false
+  },
+  "nodes": [
+    {
+      "node_id": "8deb44e0-3065-40cb-8358-532f2bf73c83",
+      "type": "SOURCE",
+      "operator": "sagemaker.s3_source_0.1",
+      "parameters": {
+        "dataset_definition": {
+          "__typename": "S3CreateDatasetDefinitionOutput",
+          "datasetSourceType": "S3",
+          "name": "insurance_claims.csv",
+          "description": null,
+          "s3ExecutionContext": {
+            "__typename": "S3ExecutionContext",
+            "s3Uri": "s3://sagemaker-us-east-1-367858208265/AutoInsuranceFraud/insurance_claims.csv",
+            "s3ContentType": "csv",
+            "s3HasHeader": true,
+            "s3FieldDelimiter": ",",
+            "s3DirIncludesNested": false,
+            "s3AddsFilenameColumn": false
+          }
+        }
+      },
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "74df1cf9-4933-44be-8193-312696a6e95f",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.infer_and_cast_type_0.1",
+      "parameters": {},
+      "trained_parameters": {
+        "schema": {
+          "months_as_customer": "long",
+          "age": "long",
+          "policy_number": "long",
+          "policy_bind_date": "date",
+          "policy_state": "string",
+          "policy_csl": "string",
+          "policy_deductable": "long",
+          "policy_annual_premium": "float",
+          "umbrella_limit": "long",
+          "insured_zip": "long",
+          "insured_sex": "string",
+          "insured_education_level": "string",
+          "insured_occupation": "string",
+          "insured_hobbies": "string",
+          "insured_relationship": "string",
+          "capital-gains": "long",
+          "capital-loss": "long",
+          "incident_date": "date",
+          "incident_type": "string",
+          "collision_type": "string",
+          "incident_severity": "string",
+          "authorities_contacted": "string",
+          "incident_state": "string",
+          "incident_city": "string",
+          "incident_location": "string",
+          "incident_hour_of_the_day": "long",
+          "number_of_vehicles_involved": "long",
+          "property_damage": "string",
+          "bodily_injuries": "long",
+          "witnesses": "long",
+          "police_report_available": "string",
+          "total_claim_amount": "long",
+          "injury_claim": "long",
+          "property_claim": "long",
+          "vehicle_claim": "long",
+          "auto_make": "string",
+          "auto_model": "string",
+          "auto_year": "long",
+          "fraud_reported": "string"
+        }
+      },
+      "inputs": [
+        {
+          "name": "default",
+          "node_id": "8deb44e0-3065-40cb-8358-532f2bf73c83",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "159caaf2-569e-43dd-85e5-de6da7eabe5a",
+      "type": "VISUALIZATION",
+      "operator": "sagemaker.visualizations.describe_0.1",
+      "parameters": {
+        "name": "TableSummary"
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "74df1cf9-4933-44be-8193-312696a6e95f",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "d0d985d3-83e5-4b19-9627-1be79fb974fb",
+      "type": "VISUALIZATION",
+      "operator": "sagemaker.visualizations.histogram_0.1",
+      "parameters": {
+        "name": "Fraud reported by state",
+        "x_axis": "fraud_reported",
+        "color_by": "policy_state"
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "74df1cf9-4933-44be-8193-312696a6e95f",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "51eb25ce-d942-4dfa-b16c-b4b03380dd3c",
+      "type": "VISUALIZATION",
+      "operator": "sagemaker.visualizations.histogram_0.1",
+      "parameters": {
+        "name": "Fraud reported by sex",
+        "x_axis": "fraud_reported",
+        "color_by": "insured_sex",
+        "facet_by": "insured_sex"
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "74df1cf9-4933-44be-8193-312696a6e95f",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "1a235b97-82d3-4e88-b800-eb555796b6f1",
+      "type": "VISUALIZATION",
+      "operator": "sagemaker.visualizations.histogram_0.1",
+      "parameters": {
+        "name": "fraud reported by education",
+        "x_axis": "fraud_reported",
+        "color_by": "insured_education_level",
+        "facet_by": "insured_education_level"
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "74df1cf9-4933-44be-8193-312696a6e95f",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "942927e6-b4b9-493c-ab94-312749774403",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.search_and_edit_0.1",
+      "parameters": {
+        "operator": "Find and replace substring",
+        "find_and_replace_substring_parameters": {
+          "input_column": "police_report_available",
+          "pattern": "\\?",
+          "replacement": ""
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "74df1cf9-4933-44be-8193-312696a6e95f",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "0be4028e-5662-4910-839b-ab9c87f08058",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.handle_missing_0.1",
+      "parameters": {
+        "operator": "Drop missing",
+        "drop_missing_parameters": {
+          "dimension": "Drop Rows",
+          "drop_rows_parameters": {
+            "input_column": "police_report_available"
+          }
+        },
+        "fill_missing_parameters": {
+          "input_column": "police_report_available",
+          "fill_value": "NO"
+        },
+        "impute_parameters": {
+          "column_type": "Numeric",
+          "numeric_parameters": {
+            "strategy": "Approximate Median"
+          }
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "942927e6-b4b9-493c-ab94-312749774403",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "23bd33ab-ead1-4be0-ac68-eb8e0b775864",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.search_and_edit_0.1",
+      "parameters": {
+        "operator": "Find and replace substring",
+        "find_and_replace_substring_parameters": {
+          "input_column": "collision_type",
+          "pattern": "\\?",
+          "replacement": ""
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "0be4028e-5662-4910-839b-ab9c87f08058",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "1b163dae-7653-45ba-afe0-951c49963608",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.handle_missing_0.1",
+      "parameters": {
+        "operator": "Drop missing",
+        "drop_missing_parameters": {
+          "dimension": "Drop Rows",
+          "drop_rows_parameters": {
+            "input_column": "collision_type"
+          }
+        },
+        "impute_parameters": {
+          "column_type": "Numeric",
+          "numeric_parameters": {
+            "strategy": "Approximate Median"
+          }
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "23bd33ab-ead1-4be0-ac68-eb8e0b775864",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "1e226e1d-2eac-4933-af61-52ba94a2580c",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.search_and_edit_0.1",
+      "parameters": {
+        "operator": "Find and replace substring",
+        "find_and_replace_substring_parameters": {
+          "input_column": "property_damage",
+          "pattern": "\\?",
+          "replacement": ""
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "1b163dae-7653-45ba-afe0-951c49963608",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "b54f18ac-ee00-4789-969a-bd3b526fe6c1",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.handle_missing_0.1",
+      "parameters": {
+        "operator": "Drop missing",
+        "drop_missing_parameters": {
+          "dimension": "Drop Rows",
+          "drop_rows_parameters": {
+            "input_column": "property_damage"
+          }
+        },
+        "impute_parameters": {
+          "column_type": "Numeric",
+          "numeric_parameters": {
+            "strategy": "Approximate Median"
+          }
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "1e226e1d-2eac-4933-af61-52ba94a2580c",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "24aaa992-d4c3-4d6f-8160-d349310c2964",
+      "type": "VISUALIZATION",
+      "operator": "sagemaker.visualizations.histogram_0.1",
+      "parameters": {
+        "name": "fraud by police report",
+        "x_axis": "fraud_reported",
+        "color_by": "police_report_available",
+        "facet_by": "police_report_available"
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "b54f18ac-ee00-4789-969a-bd3b526fe6c1",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "4deff5a9-d2b5-4133-9957-c297727ff7d4",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.manage_columns_0.1",
+      "parameters": {
+        "operator": "Drop column",
+        "drop_column_parameters": {
+          "column_to_drop": "months_as_customer"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "b54f18ac-ee00-4789-969a-bd3b526fe6c1",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "b65a1d23-99c7-4725-a7a3-64e6fced80fd",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.manage_columns_0.1",
+      "parameters": {
+        "operator": "Drop column",
+        "drop_column_parameters": {
+          "column_to_drop": "policy_number"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "4deff5a9-d2b5-4133-9957-c297727ff7d4",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "24be310a-e87f-4e69-b72e-1c9aa0591f0b",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.manage_columns_0.1",
+      "parameters": {
+        "operator": "Drop column",
+        "drop_column_parameters": {
+          "column_to_drop": "policy_bind_date"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "b65a1d23-99c7-4725-a7a3-64e6fced80fd",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "693ab699-7533-4a17-8855-759f8da38384",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.manage_columns_0.1",
+      "parameters": {
+        "operator": "Drop column",
+        "drop_column_parameters": {
+          "column_to_drop": "policy_csl"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "24be310a-e87f-4e69-b72e-1c9aa0591f0b",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "93d0f477-cbe2-4a53-9bc4-026a0771458c",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.manage_columns_0.1",
+      "parameters": {
+        "operator": "Drop column",
+        "drop_column_parameters": {
+          "column_to_drop": "auto_year"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "693ab699-7533-4a17-8855-759f8da38384",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "a854620f-8349-4349-8957-b47070f4ac02",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.manage_columns_0.1",
+      "parameters": {
+        "operator": "Drop column",
+        "drop_column_parameters": {
+          "column_to_drop": "auto_model"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "93d0f477-cbe2-4a53-9bc4-026a0771458c",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "46709305-c06e-45f8-b2a8-967029075919",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.manage_columns_0.1",
+      "parameters": {
+        "operator": "Drop column",
+        "drop_column_parameters": {
+          "column_to_drop": "insured_hobbies"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "a854620f-8349-4349-8957-b47070f4ac02",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "584a4ac2-7940-4ea1-ac6f-09b510870bb0",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.manage_columns_0.1",
+      "parameters": {
+        "operator": "Drop column",
+        "drop_column_parameters": {
+          "column_to_drop": "insured_zip"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "46709305-c06e-45f8-b2a8-967029075919",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "acc69b9a-5039-4c4d-bfa0-4c9e15c0c92c",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.encode_categorical_0.1",
+      "parameters": {
+        "operator": "Ordinal encode",
+        "ordinal_encode_parameters": {
+          "invalid_handling_strategy": "Replace with NaN",
+          "input_column": "insured_sex"
+        }
+      },
+      "trained_parameters": {
+        "ordinal_encode_parameters": {
+          "_hash": -7262088998495137000,
+          "string_indexer_model": "P)h>@6aWAK2msO`C{q>}9B<(O003zL000vJ003=ebYWy+bYU-WVRCdWFfcGMFm;a0PQx$|MfZG$*Qu4_l9Fy=(?tamh;1~oC#_Y#7~80&%D*!N2?>dA@7#0lT!eOzv)G78dkG2j0cB1=N9mm$5lSVLFNJK_Z-c=T(k>cwq7lV<%msWBn`Nh#?OOGHcfaZzG4pRo*~Y+TC0p4pz<-8C%UrdF!#~Qwm|iJ;r@Hm+iYv^6-vOI1BG!^>d5Dgof<6s8ey<-O7>C>N0dDpk5fjHY{FZIV{JR-4p2XA$gCkT|p0B8{|1%6fy?;iLC=%y+hM&kFy`B^DWh8vB81(rOvli2I^94{#0|XQR000O8(jX{PTLEEm4gdfE3;+NC7ytkOZDn*}WMOn+FD`Ila&#>)FfcGME@N_IOD;-gU|?Wk$d?fp0{~D<0|XQR000O8(jX{PV<^(KkpTbzf&u^lNB{r;WMOn+FK}UUbS*G2FfcGJIX5|DI5K5pEi_^?W-T-|Fk>xYHDzTjH#9ajW@ctIGcsc_En_e+FfMa$VQ_GHE^uLTadl;MjZ#f(+dvQ<E2?6MuWMGIgS+5hgS|+VquM4Hmn4Lc1XFq_lu}mKDivMHj&|J;g6}1NEPpHG*!eVtTy|&Pdo#0d*zxFVK!AK92OVN#;1I`)pk<$pP7kSbbhx|$;G?&N=T;T$%J#Sm;9#~QZH$&Tv0Qar(=$>2`K2enWiE&XdlubMB9=;z%2Heti#V`nQ(I-)tmtj2WG)NymLj$0GuZ^FTdwDNyH$_W+$K2g_m_PiiXO$U5@OZu`oBv3wz6B@-|*#n=ooMs_D7KgZimuodBMd@pauTmhX0kN&ZY(Z5OSaUK-(J%eW^GGmvd=&Ilbb!G$Ij3(7VbFGuJc8hD@7sJ~6Dr(oCvEv*C{$R)~B_y>Np3O8-<R*6`ZUw|B71Sy^#`@MKyTkrn!Ut`r;M3*_QIV1bE<m0STG_GkfTEfzl)Ku^{NyLs7IZ=@0Mz~@1u70)x3H2idsq`feaX&U$YY4SPkM^ThSVKfN(y-#82r@bgn25r~#aN_~4eT={F9#BgI1QY-O00;omAShFD?I8&g0000G0000@0001FVRT_HE^uLTbS*G2FfcGJIX5|DI5K5pEi_^?W-T-|Fk>xYHDzTjH#9ajW@ctIGcsc_En_e+FfMa$VQ_GHE^uLTadl;ME@N_IOD;-gU|?WkxUv5Go__9%<p5Ai0Rj{Q6aWAK2msO`C{q>}9B<(O003zL000vJ0000000000005+c00000ZDn*}WMOn+FK}UUbS*G2FfcGsO928D0~7!N00;omAShE?0bz0u0000C0000O00000000000001_ff4}#0BvP-VPs)+VJ|LlVRCdWFfcGMFfL<qV^B*00u%!j000080MZ~RQ)4L7wUGe;0D=Ml07w7;00000000000HlFd0RRAGVRT_HaA9(EEif=JFfc7SH#uWCGG${eG-5MmEi^SSV=ZAdWo0clG&VM7W@a=qGGj3<V=yo<E^}^SaBz7paA9(Bb!Bu=O928D0~7!N00;omAShFD?I8&g0000G0000@00000000000001_flUJd0AyiwVJ|LlVRCdWFfcGMFfBPZIb%37Wn(QgVl!qfG&L||EnzifWi2-}Ha2EvW;8Q0V=*mbFfcGKb8ca9aCt6pVRCVGWpplMa$`_S1qJ{B000C41ORve007DZ00000"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "584a4ac2-7940-4ea1-ac6f-09b510870bb0",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "0bf1118c-e944-4df5-8195-0d8ad209a2e1",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.encode_categorical_0.1",
+      "parameters": {
+        "operator": "Ordinal encode",
+        "ordinal_encode_parameters": {
+          "invalid_handling_strategy": "Replace with NaN",
+          "input_column": "insured_education_level"
+        }
+      },
+      "trained_parameters": {
+        "ordinal_encode_parameters": {
+          "_hash": -7262088998495137000,
+          "string_indexer_model": "P)h>@6aWAK2ms|EC{qXJHNNNo004CX000vJ003=ebYWy+bYU-WVRCdWFfcGMFm;blO9L?w#qWNMoVOvns}*|HOAkds@fwC?whhfcCrPoE{q7Dch!(sJkN11;%|#dwrHGA4w3m><98i`Fbd<r%386MZ`BKTn{We<sK-wjXUUZ_mfTcpnV$-k3UftiSQ4RgN6AS-_R9uRjJW3_i3c_bxDdw89EdGhq<1i@Ok7$Rxfi28K*a0VB!~vr9xQ!?93wT7#Y;iHS`j9*;E*2hXHQHvNa;NrqS|+Aee_Rzq)`riy6BZ|EzCQn|Da)QGvPiGzj0{YK?+v3lKVmT)c0B}%5?z)2|CQF?J~7WXUr<W}1QY-O00;o(AShD>0WX&h0000C0000O0001OWprU=VRT_HE^uLTbS*G2FfcGKV{&6lE=p!#U|?d{XZn;K08mQ<1QY-O00;o(AShE-v(e7K0RRBG0ssI=0001FVRT_HaA9(EEif=JFfc7-HezBjW?^G3W@9sDEi^P@G%YzWV=yf=WMelmHZ(FZHDNX_V=yo<E^}^SaBz7paA9(Bb!BvoQeA7?Fcg)Y%xP)pn~XgCU<@hk$b?;|UJ~{anuk*82wNWpV+`4rV>8)KEoG&Y{GHN&vLCU(G5WmgChfW}*o!##oU40v4w_Bg`WWF`4c};eybI94h8?2))-0Qn?TM6CoHNA{Lg#i1&erXVw$^cqZ>A2_=~Oes*|Y=jj7i07xdZSdpJ&dyIIAk5J<pCSA^4ncgYY=6nFI^4Zi$nwT(J7{CmCnFU|2^-I@u8{;zCa9nq6TX8|bJ_+9H=~EqA!!1uxa_67KeXiamr(-LfrvZ_CDAtA`Bh{nNSkmmZpbDX?ztns=J{UEAAw{g)^#8)8DZ@!z!R$m$bP)pN=g3{22_KlBTPkyj;o7Eq6Rh#dUUAuj|4aIxfy*3~5~xMB%YjC|FuU3InK?%0*8UdGDpyJ^lvBHi(aYqw-YBR%l~`nvz|9^23xOXvTgHoNk24s=|VishwzvlPM|!wdN8A7lvyiv(X2efPlv>{_ipt`Irh7<^gO&L$DZr@lvhXFpozB5}NQl%#_o;b|HThiURE9fo0;gh4p+hl9f)@X|pTC8Gn&wjuEVVxPgM{Q*!*0|XQR000O8<sc|i77i?q5&!@I5C8xGO#lD@WMOn+FD`Ila&#>)FfcGMEo3%gVlrl7V=ZQ5Gi5C_G-5O@IWS`|Ei`0fH!(IeGBGt_HZ5Z?FfcB2Zeeh6c`k5aa&dKKbS`6ZV@obdW?*1oVyHgP+{O4yKMnv;O928D0~7!N00;o(AShD@<u$(O0001W0RR9K00000000000001_fdBvi0BvP-VPs)+VJ~oDa&#>)FfcGMP)h*<6ay3h000O8<sc|i1pzOY4gdfE3;+NC7ytkO0000000000q=6X$003=ebYWy+bYU+paA9(EEif=JFfcA-a$`_S0Rj{Q6aWAK2ms|EC{tFm(aygC006lH002k;0000000000005+cT>$_9WMOn+FK}UUbS*G2FfcGJWHw@AGG<|8EoNggWi2!`Vl*u|Fk>(+G-P8pF*Y<ZF*RW}En_e+FfMa$VQ_GHE^uLTadl;MP)h*<6ay3h000O8<sc|i77i?q5&!@I5C8xGO#lD@0000000000q=AA1003lRbYU+paA9(EEif=JFfc7-HezBjW?^G3W@9sDEi^P@G%YzWV=yf=WMelmHZ(FZHDNX_V=yo<E^}^SaBz7paA9(Bb!BueV{&6qO9ci10000400aPd0RRC10{{R300"
+        }
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "acc69b9a-5039-4c4d-bfa0-4c9e15c0c92c",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "node_id": "fd138dfd-6117-4a02-b29c-060d0c7066e7",
+      "type": "TRANSFORM",
+      "operator": "sagemaker.spark.custom_pandas_0.1",
+      "parameters": {
+        "code": "# Table is available as variable `df`\nfrom sklearn.preprocessing import LabelEncoder\nle=LabelEncoder()\nfor i in list(df.columns):\n    if df[i].dtype=='object':\n        df[i]=le.fit_transform(df[i])"
+      },
+      "inputs": [
+        {
+          "name": "df",
+          "node_id": "0bf1118c-e944-4df5-8195-0d8ad209a2e1",
+          "output_name": "default"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "default"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,342 @@
+[
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "false",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "true",
+        "sourceColumn": "police_report_available"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "false",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "true",
+        "sourceColumn": "collision_type"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "false",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "true",
+        "sourceColumn": "property_damage"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_MISSING",
+      "Parameters": {
+        "sourceColumn": "police_report_available"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_MISSING",
+      "Parameters": {
+        "sourceColumn": "collision_type"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_MISSING",
+      "Parameters": {
+        "sourceColumn": "property_damage"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"months_as_customer\",\"policy_number\",\"policy_bind_date\",\"policy_csl\",\"insured_hobbies\",\"auto_model\",\"auto_year\",\"insured_zip\"]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"FEMALE\":\"1\",\"MALE\":\"2\"}",
+        "deleteOtherRows": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "insured_sex",
+        "targetColumn": "insured_sex_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"insured_sex\"]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"MD\":\"1\",\"JD\":\"2\",\"Masters\":\"3\",\"High School\":\"4\",\"College\":\"5\",\"PhD\":\"6\",\"Associate\":\"7\"}",
+        "deleteOtherRows": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "insured_education_level",
+        "targetColumn": "insured_education_level_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"machine-op-inspct\":\"1\",\"prof-specialty\":\"2\",\"sales\":\"3\",\"craft-repair\":\"4\",\"tech-support\":\"5\",\"protective-serv\":\"6\",\"exec-managerial\":\"7\",\"transport-moving\":\"8\",\"adm-clerical\":\"9\",\"handlers-cleaners\":\"10\",\"armed-forces\":\"11\",\"priv-house-serv\":\"12\",\"other-service\":\"13\",\"farming-fishing\":\"14\"}",
+        "deleteOtherRows": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "insured_occupation",
+        "targetColumn": "insured_occupation_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"not-in-family\":\"1\",\"own-child\":\"2\",\"husband\":\"3\",\"other-relative\":\"4\",\"wife\":\"5\",\"unmarried\":\"6\"}",
+        "deleteOtherRows": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "insured_relationship",
+        "targetColumn": "insured_relationship_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"N\":\"1\",\"Y\":\"2\"}",
+        "deleteOtherRows": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "fraud_reported",
+        "targetColumn": "fraud_reported_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"Saab\":\"1\",\"Accura\":\"2\",\"Dodge\":\"3\",\"Ford\":\"4\",\"Mercedes\":\"5\",\"Chevrolet\":\"6\",\"Audi\":\"7\",\"Suburu\":\"8\",\"BMW\":\"9\",\"Nissan\":\"10\",\"Volkswagen\":\"11\",\"Toyota\":\"12\",\"Honda\":\"13\",\"Jeep\":\"14\"}",
+        "deleteOtherRows": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "auto_make",
+        "targetColumn": "auto_make_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"NO\":\"1\",\"YES\":\"2\"}",
+        "deleteOtherRows": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "police_report_available",
+        "targetColumn": "police_report_available_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"NO\":\"1\",\"YES\":\"2\"}",
+        "deleteOtherRows": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "property_damage",
+        "targetColumn": "property_damage_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"9935 4th Drive\":\"1\",\"7121 Francis Lane\":\"2\",\"8973 Washington St\":\"3\",\"4872 Rock Ridge\":\"4\",\"5971 5th Hwy\":\"5\",\"6655 5th Drive\":\"6\",\"6851 3rd Drive\":\"7\",\"9573 Weaver Ave\":\"8\",\"4546 Tree St\":\"9\",\"3842 Solo Ridge\":\"10\",\"2526 Embaracadero Ave\":\"11\",\"2502 Apache Hwy\":\"12\",\"3418 Texas Lane\":\"13\",\"3220 Rock Drive\":\"14\",\"2100 Francis Drive\":\"15\",\"6092 5th Ave\":\"16\",\"3540 Maple St\":\"17\",\"3104 Sky Drive\":\"18\",\"3221 Solo Ridge\":\"19\",\"6660 MLK Drive\":\"20\",\"8907 Tree Ave\":\"21\",\"6723 Best Drive\":\"22\",\"4296 Pine Hwy\":\"23\",\"2299 1st St\":\"24\",\"7459 Flute St\":\"25\",\"3567 4th Drive\":\"26\",\"2457 Washington Ave\":\"27\",\"1269 Flute Drive\":\"28\",\"1218 Sky Hwy\":\"29\",\"9169 Pine Ridge\":\"30\",\"8538 Texas Lane\":\"31\",\"5783 Oak Ave\":\"32\",\"6751 Pine Ridge\":\"33\",\"2324 Texas Ridge\":\"34\",\"7923 Elm Ave\":\"35\",\"4755 Best Lane\":\"36\",\"5053 Tree Drive\":\"37\",\"2078 3rd Ave\":\"38\",\"3087 Oak Hwy\":\"39\",\"9737 Solo Hwy\":\"40\",\"6550 Andromedia St\":\"41\",\"1679 2nd Hwy\":\"42\",\"7773 Tree Hwy\":\"43\",\"3052 Weaver Ridge\":\"44\",\"8118 Elm Ridge\":\"45\",\"4614 MLK Ave\":\"46\",\"2100 MLK St\":\"47\",\"7551 Britain Lane\":\"48\",\"1598 3rd Drive\":\"49\",\"8983 Francis Ridge\":\"50\",\"9034 Weaver Ridge\":\"51\",\"8080 Oak Lane\":\"52\",\"7582 Pine Drive\":\"53\",\"8150 Washington Ridge\":\"54\",\"1815 Cherokee Drive\":\"55\",\"9316 Pine Ave\":\"56\",\"2733 Texas Drive\":\"57\",\"7684 Francis Ridge\":\"58\",\"4905 Francis Ave\":\"59\",\"9706 MLK Lane\":\"60\",\"4098 Weaver Ridge\":\"61\",\"9748 Sky Drive\":\"62\",\"8579 Apache Drive\":\"63\",\"7819 Oak St\":\"64\",\"6955 Pine Drive\":\"65\",\"5812 3rd Hwy\":\"66\",\"9588 Solo St\":\"67\",\"9138 3rd St\":\"68\",\"3167 2nd St\":\"69\",\"9760 Solo Lane\":\"70\",\"6104 Oak Ave\":\"71\",\"9798 Sky Ridge\":\"72\",\"5483 Francis Drive\":\"73\",\"2005 Texas Hwy\":\"74\",\"6634 Texas Ridge\":\"75\",\"7705 Best Ridge\":\"76\",\"5640 Embaracadero Lane\":\"77\",\"3550 Washington Ave\":\"78\",\"5277 Texas Lane\":\"79\",\"2376 Sky Ridge\":\"80\",\"1273 Rock Lane\":\"81\",\"5506 Best St\":\"82\",\"9751 Sky Ridge\":\"83\",\"9020 Elm Ave\":\"84\",\"4983 MLK Ridge\":\"85\",\"2886 Tree Ridge\":\"86\",\"5862 Apache Ridge\":\"87\",\"7859 4th Ridge\":\"88\",\"3184 Oak Ave\":\"89\",\"5778 Pine Ridge\":\"90\",\"3797 Solo Lane\":\"91\",\"1267 Francis Hwy\":\"92\",\"7434 Oak Hwy\":\"93\",\"3439 Andromedia Hwy\":\"94\",\"3982 Washington Hwy\":\"95\",\"6522 Apache Drive\":\"96\",\"8188 Tree Ave\":\"97\",\"6719 Flute St\":\"98\",\"2469 Francis Lane\":\"99\",\"4671 5th Ridge\":\"100\",\"6250 1st Ridge\":\"101\",\"1346 5th Lane\":\"102\",\"1128 Maple Lane\":\"103\",\"4618 Flute Ave\":\"104\",\"6191 Oak Lane\":\"105\",\"1316 Britain Ridge\":\"106\",\"1507 Solo Ave\":\"107\",\"3809 Texas Lane\":\"108\",\"1540 Apache Lane\":\"109\",\"2337 Lincoln Hwy\":\"110\",\"4347 2nd Ridge\":\"111\",\"1091 1st Drive\":\"112\",\"6945 Texas Hwy\":\"113\",\"5639 1st Ridge\":\"114\",\"5771 Sky Ave\":\"115\",\"8542 Lincoln Ridge\":\"116\",\"4429 Washington St\":\"117\",\"2651 MLK Lane\":\"118\",\"2777 Solo Drive\":\"119\",\"7121 Rock St\":\"120\",\"5649 Texas Ave\":\"121\",\"1220 MLK Ave\":\"122\",\"1589 Pine St\":\"123\",\"9286 Oak Ave\":\"124\",\"7281 Maple Hwy\":\"125\",\"6738 Washington Hwy\":\"126\",\"6390 Apache St\":\"127\",\"6409 Cherokee Drive\":\"128\",\"1123 5th Lane\":\"129\",\"3697 Apache Drive\":\"130\",\"8954 Apache Lane\":\"131\",\"9879 Apache Drive\":\"132\",\"1929 Britain Drive\":\"133\",\"9910 Maple Ave\":\"134\",\"9360 3rd Drive\":\"135\",\"1655 Francis Hwy\":\"136\",\"7066 Texas Ave\":\"137\",\"8021 Flute Ave\":\"138\",\"5585 Washington Drive\":\"139\",\"3925 Sky St\":\"140\",\"7327 Lincoln Drive\":\"141\",\"9369 Flute Hwy\":\"142\",\"9488 Best Drive\":\"143\",\"9875 MLK Ave\":\"144\",\"9657 5th Ave\":\"145\",\"5765 Washington St\":\"146\",\"1738 Solo Lane\":\"147\",\"4231 3rd Ave\":\"148\",\"7909 Andromedia Hwy\":\"149\",\"1957 Washington Ave\":\"150\",\"7649 Texas St\":\"151\",\"3457 Texas Lane\":\"152\",\"7693 Cherokee Lane\":\"153\",\"7877 3rd Ridge\":\"154\",\"9325 Lincoln Drive\":\"155\",\"6751 5th Hwy\":\"156\",\"6479 Francis Ave\":\"157\",\"9066 Best Ridge\":\"158\",\"7061 Cherokee Drive\":\"159\",\"3769 Sky St\":\"160\",\"8489 Pine Hwy\":\"161\",\"9293 Pine Lane\":\"162\",\"8862 Maple Ridge\":\"163\",\"3982 Weaver Lane\":\"164\",\"2920 5th Ave\":\"165\",\"9109 Britain Drive\":\"166\",\"2290 4th Ave\":\"167\",\"5868 Sky Hwy\":\"168\",\"3508 Washington St\":\"169\",\"8897 Sky St\":\"170\",\"9611 Pine Ridge\":\"171\",\"3039 Oak Hwy\":\"172\",\"9787 Andromedia Ave\":\"173\",\"2014 Rock Ave\":\"174\",\"8983 Tree St\":\"175\",\"6206 3rd Ridge\":\"176\",\"3227 Maple Ave\":\"177\",\"5363 Weaver Lane\":\"178\",\"2397 Cherokee Ave\":\"179\",\"9633 MLK Lane\":\"180\",\"4981 Flute Hwy\":\"181\",\"1248 MLK Ridge\":\"182\",\"3323 1st Lane\":\"183\",\"7488 Lincoln Lane\":\"184\",\"9007 Francis Hwy\":\"185\",\"1491 Francis Ridge\":\"186\",\"3659 Oak Lane\":\"187\",\"5189 Francis Drive\":\"188\",\"6515 Oak Lane\":\"189\",\"9918 Andromedia Drive\":\"190\",\"3311 2nd Drive\":\"191\",\"4652 Flute Drive\":\"192\",\"3664 Francis Ridge\":\"193\",\"5894 Flute Drive\":\"194\",\"8459 Apache Ave\":\"195\",\"7705 Lincoln Drive\":\"196\",\"2509 Rock Drive\":\"197\",\"2063 Weaver St\":\"198\",\"9911 Britain Lane\":\"199\",\"8949 Rock Hwy\":\"200\",\"9751 Tree St\":\"201\",\"2757 4th Hwy\":\"202\",\"4931 Maple Drive\":\"203\",\"3808 5th Ave\":\"204\",\"1725 Solo Lane\":\"205\",\"8097 Maple Lane\":\"206\",\"5160 2nd Hwy\":\"207\",\"5874 1st Hwy\":\"208\",\"6309 5th Ave\":\"209\",\"4107 MLK Ridge\":\"210\",\"6158 Sky Ridge\":\"211\",\"1833 Solo Ave\":\"212\",\"1953 Sky Lane\":\"213\",\"6834 1st Drive\":\"214\",\"9734 2nd Ridge\":\"215\",\"8214 Flute St\":\"216\",\"3799 Embaracadero Drive\":\"217\",\"5071 1st Lane\":\"218\",\"6574 4th Drive\":\"219\",\"7976 Britain Drive\":\"220\",\"9236 2nd Hwy\":\"221\",\"1213 4th Lane\":\"222\",\"3397 5th Ave\":\"223\",\"3263 Pine Ridge\":\"224\",\"4939 Oak Lane\":\"225\",\"3029 5th Ave\":\"226\",\"7701 Tree St\":\"227\",\"2753 Cherokee Ave\":\"228\",\"5782 Rock Drive\":\"229\",\"2900 Sky Drive\":\"230\",\"1515 Pine Lane\":\"231\",\"6384 5th Ridge\":\"232\",\"6110 Rock Ridge\":\"233\",\"4910 1st Lane\":\"234\",\"8766 Lincoln Lane\":\"235\",\"6399 Oak Drive\":\"236\",\"3127 Flute St\":\"237\",\"7314 Tree Drive\":\"238\",\"5022 1st St\":\"239\",\"9529 4th Drive\":\"240\",\"4782 Sky Lane\":\"241\",\"2037 5th Drive\":\"242\",\"1832 Elm Hwy\":\"243\",\"8701 5th Lane\":\"244\",\"5058 4th Lane\":\"245\",\"3098 Oak Lane\":\"246\",\"9103 MLK Lane\":\"247\",\"2905 Embaracadero Drive\":\"248\",\"3443 Maple Ridge\":\"249\",\"1618 Maple Hwy\":\"250\",\"6581 Rock Ridge\":\"251\",\"7236 Apache Lane\":\"252\",\"9818 Cherokee Ave\":\"253\",\"7819 2nd Ave\":\"254\",\"1879 4th Lane\":\"255\",\"4254 Best Ridge\":\"256\",\"5812 Weaver Ave\":\"257\",\"1376 Pine St\":\"258\",\"1916 Elm St\":\"259\",\"8917 Cherokee Lane\":\"260\",\"3753 Francis Lane\":\"261\",\"2272 Embaracadero Drive\":\"262\",\"8617 Best Ave\":\"263\",\"1951 Best Ave\":\"264\",\"7393 Washington St\":\"265\",\"2003 2nd Hwy\":\"266\",\"9418 5th Hwy\":\"267\",\"8770 1st Lane\":\"268\",\"6741 Oak Ridge\":\"269\",\"8368 Cherokee Ave\":\"270\",\"3618 Sky Ave\":\"271\",\"5459 MLK Ave\":\"272\",\"4538 Flute Hwy\":\"273\",\"2798 1st Ave\":\"274\",\"7281 Oak St\":\"275\",\"8946 2nd Drive\":\"276\",\"3726 MLK Hwy\":\"277\",\"9724 Maple St\":\"278\",\"7397 4th Drive\":\"279\",\"3488 Flute Lane\":\"280\",\"2381 1st Hwy\":\"281\",\"7197 2nd Drive\":\"282\",\"9214 Texas Drive\":\"283\",\"9580 MLK Ave\":\"284\",\"5868 Best Drive\":\"285\",\"5318 5th Ave\":\"286\",\"7502 Rock Lane\":\"287\",\"4780 Best Drive\":\"288\",\"1589 Best Ave\":\"289\",\"1880 Weaver Drive\":\"290\",\"3177 MLK Ridge\":\"291\",\"3929 Oak Drive\":\"292\",\"1469 Lincoln Drive\":\"293\",\"1353 Washington St\":\"294\",\"5769 Texas Lane\":\"295\",\"2849 Pine Drive\":\"296\",\"8125 Texas Ridge\":\"297\",\"1578 5th Lane\":\"298\",\"1472 4th Drive\":\"299\",\"7144 Andromedia St\":\"300\",\"7544 Washington Ave\":\"301\",\"7201 Washington Ave\":\"302\",\"8805 Cherokee Drive\":\"303\",\"5383 Maple Drive\":\"304\",\"8524 Pine Lane\":\"305\",\"8456 1st Ave\":\"306\",\"3639 Flute Hwy\":\"307\",\"7900 Sky Hwy\":\"308\",\"7835 Cherokee Hwy\":\"309\",\"9278 Francis Ridge\":\"310\",\"3171 Andromedia Lane\":\"311\",\"4477 5th Ave\":\"312\",\"7495 Washington Ave\":\"313\",\"6888 Elm Ridge\":\"314\",\"6638 Tree Drive\":\"315\",\"5678 Lincoln Drive\":\"316\",\"8845 5th Ave\":\"317\",\"9317 Apache Ave\":\"318\",\"1173 Andromedia Ave\":\"319\",\"7937 Weaver Ridge\":\"320\",\"2823 Weaver Lane\":\"321\",\"7552 3rd St\":\"322\",\"1654 Pine St\":\"323\",\"6058 Andromedia Hwy\":\"324\",\"3447 Solo Ave\":\"325\",\"6357 Texas Lane\":\"326\",\"4885 Oak Lane\":\"327\",\"7846 Andromedia Drive\":\"328\",\"3915 Embaracadero St\":\"329\",\"4242 Rock Lane\":\"330\",\"9633 4th St\":\"331\",\"7897 Lincoln St\":\"332\",\"8811 Maple Hwy\":\"333\",\"5475 Rock Lane\":\"334\",\"7504 Flute Drive\":\"335\",\"7570 Cherokee Drive\":\"336\",\"4475 Lincoln Ridge\":\"337\",\"4633 5th Lane\":\"338\",\"5312 Francis Ridge\":\"339\",\"1705 Weaver St\":\"340\"}",
+        "deleteOtherRows": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "incident_location",
+        "targetColumn": "incident_location_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"Springfield\":\"1\",\"Northbend\":\"2\",\"Hillsdale\":\"3\",\"Riverwood\":\"4\",\"Columbus\":\"5\",\"Arlington\":\"6\",\"Northbrook\":\"7\"}",
+        "deleteOtherRows": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "incident_city",
+        "targetColumn": "incident_city_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"NY\":\"NY\",\"SC\":\"SC\",\"WV\":\"WV\",\"NC\":\"NC\",\"VA\":\"VA\",\"OH\":\"OH\",\"PA\":\"PA\"}",
+        "deleteOtherRows": "false",
+        "mapType": "TEXT",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "incident_state",
+        "targetColumn": "incident_state_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"Single Vehicle Collision\":\"1\",\"Multi-vehicle Collision\":\"2\"}",
+        "deleteOtherRows": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "incident_type",
+        "targetColumn": "incident_type_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"Rear Collision\":\"1\",\"Side Collision\":\"2\",\"Front Collision\":\"3\"}",
+        "deleteOtherRows": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "collision_type",
+        "targetColumn": "collision_type_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"Minor Damage\":\"1\",\"Total Loss\":\"2\",\"Major Damage\":\"3\"}",
+        "deleteOtherRows": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "incident_severity",
+        "targetColumn": "incident_severity_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"Fire\":\"1\",\"Police\":\"2\",\"Ambulance\":\"3\",\"Other\":\"4\"}",
+        "deleteOtherRows": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "authorities_contacted",
+        "targetColumn": "authorities_contacted_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"OH\":\"1\",\"IL\":\"2\",\"IN\":\"3\"}",
+        "deleteOtherRows": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "ALL_VALUES",
+        "sourceColumn": "policy_state",
+        "targetColumn": "policy_state_mapped"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"policy_state\",\"insured_education_level\",\"insured_occupation\",\"insured_relationship\",\"incident_type\",\"incident_severity\",\"authorities_contacted\",\"incident_state\",\"incident_city\",\"incident_location\",\"police_report_available\",\"fraud_reported\"]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"auto_make\"]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"property_damage\"]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"collision_type\"]"
+      }
+    }
+  }
+]
