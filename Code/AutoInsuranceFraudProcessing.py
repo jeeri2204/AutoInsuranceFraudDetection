@@ -30,16 +30,14 @@ if __name__ == "__main__":
 
     #replacing ? with nan for the columns
     df['police_report_available']=df['police_report_available'].replace('?',np.nan)
-    df['collision_type']=df['collision_type'].replace('?',np.nan)
-    df['property_damage']=df['property_damage'].replace('?',np.nan)
-    
-    #droping rows with nan
-    df=df.dropna(subset=['police_report_available', 'collision_type','property_damage'])
-    
     #dropping the unnecessary rows
-    df=df.drop(['months_as_customer','policy_number','policy_bind_date','policy_csl','auto_year','auto_model','insured_hobbies','insured_zip'],axis=1)
+    df=df.dropna(subset=['police_report_available'])
+    
+    #drop unnecessary columns
+    df=df.drop(['months_as_customer'],axis=1)
     
     #now deal with the categorical features
+    #for the columns insured_sex and fraud_reported
     le=LabelEncoder()
     for i in list(df.columns):
         if df[i].dtype=='object':
@@ -50,5 +48,4 @@ if __name__ == "__main__":
     train_features_output_path = os.path.join("/opt/ml/processing/output", "preprocessed_data.csv")
     df.to_csv(train_features_output_path, index=False)
     print("done")
-
     
