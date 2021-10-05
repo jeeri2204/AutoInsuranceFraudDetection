@@ -17,4 +17,3 @@ Gaurav Sahi  - Principal Solutions Architect
 
 ## References
 https://sagemaker-examples.readthedocs.io/en/latest/sagemaker-featurestore/sagemaker_featurestore_fraud_detection_python_sdk.html
-https://www.youtube.com/watch?v=4FnK9ORnH4c
