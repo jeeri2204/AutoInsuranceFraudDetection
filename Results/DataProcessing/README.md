@@ -1,3 +1,3 @@
-# Processing by Sagemaker
+# Data Processing Results
 
-This Folder will store the result of Processing by Sagemaker
+This Folder will store the result of Amazon Sagemaker Data Processing
