@@ -1,3 +1,6 @@
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: MIT-0
+
 # Data Preparation using Amazon SageMaker and Glue DataBrew
 
 This project contains the code for the workshop : https://catalog.us-east-1.prod.workshops.aws/v2/workshops/1e224d5a-4273-444a-acec-28d44a5bfb28/en-US
@@ -11,9 +14,9 @@ AWS Glue DataBrew is a new visual data preparation tool that makes it easy for d
 Amazon SageMaker Feature Store is a fully managed, purpose-built repository to store, update, retrieve, and share machine learning (ML) features. Finally we use the processed dataset and Feature Store to training and deploying an XGBoost model as a sample
 
 ## Contributors
-Jeeri Deka  - Associate Solutions Architect
-Gaurav Singh  - Solutions Architect
-Gaurav Sahi  - Principal Solutions Architect
+Jeeri Deka  - Associate Solutions Architect<br />
+Gaurav Singh  - Solutions Architect<br />
+Gaurav Sahi  - Principal Solutions Architect<br />
 
 ## References
 https://sagemaker-examples.readthedocs.io/en/latest/sagemaker-featurestore/sagemaker_featurestore_fraud_detection_python_sdk.html
