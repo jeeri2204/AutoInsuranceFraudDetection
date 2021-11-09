@@ -1,5 +1,4 @@
-###### Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. <br />
-###### SPDX-License-Identifier: MIT-0 <br />
+
 
 # Data Preparation using Amazon SageMaker and Glue DataBrew
 
